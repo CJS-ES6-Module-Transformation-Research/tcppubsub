@@ -1,7 +1,7 @@
 {
   "name": "tcppubsub",
   "version": "0.0.1",
-  "description": "A implementation of a tcp-pub-sub pattern as broker and member on top of the nodejs-net framework.",
+  "description": "A simple node-js-tcp publish-subscribe framework. With a broker and a client called member.",
   "main": "lib/main.js",
   "scripts": {
     "test": "mocha"
