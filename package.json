@@ -1,0 +1,28 @@
+{
+  "name": "tcppubsub",
+  "version": "0.0.1",
+  "description": "A implementation of a tcp-pub-sub pattern as broker and member on top of the nodejs-net framework.",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "homepage": "https://github.com/yamigr/tcppubsub#readme",
+  "keywords": [
+    "tcppubsub",
+    "publish",
+    "subscribe",
+    "dealer",
+    "consumer",
+    "server",
+    "member",
+    "broker"
+  ],
+  "author": "yannick grund, https://github.com/yamigr",
+  "license": "MIT",
+  "dependencies": {
+    "wildcard": "^1.1.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
