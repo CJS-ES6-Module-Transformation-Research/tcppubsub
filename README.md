@@ -8,7 +8,7 @@ The idea of this framework is, to let diffrent nodejs-apps communicate together.
 * [Go to member](#member)
 
 
-[![Build Status](https://travis-ci.org/yamigr/tcpleveldb.svg?branch=master)](https://travis-ci.org/yamigr/tcpleveldb)
+[![Build Status](https://travis-ci.org/yamigr/tcppubsub.svg?branch=master)](https://travis-ci.org/yamigr/tcppubsub)
 
 ## Installing
 ```sh
