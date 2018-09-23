@@ -27,7 +27,7 @@ var tcppubsub = require('tcppubsub')
 var port = 2223
 var host = 'localhost'
 
-var broker = new tcppubsub.Server(port, host)
+var broker = new tcppubsub.Broker(port, host)
 broker.listen() 
 
 //you can use some socket-events if needed
