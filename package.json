@@ -15,7 +15,10 @@
     "consumer",
     "server",
     "member",
-    "broker"
+    "broker",
+    "IoT",
+    "frameworks",
+    "backend"
   ],
   "author": "yannick grund, https://github.com/yamigr",
   "license": "MIT",
