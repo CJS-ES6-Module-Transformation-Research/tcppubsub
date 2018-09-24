@@ -26,9 +26,14 @@ var tcppubsub = require('tcppubsub')
 
 var port = 2223
 var host = 'localhost'
+var blockPublisher = false // block payload sending to publisher, if he has subscribed the topic too
 
-var broker = new tcppubsub.Broker(port, host)
+var broker = new tcppubsub.Broker(port, host, blockPublisher)
 broker.listen() 
+
+broker.getConnectios(function(err, numb){
+    console.log('connected members:', numb)
+})
 
 //you can use some socket-events if needed
 broker.on('end', function(msg){console.log(msg)})
@@ -44,6 +49,7 @@ broker.on('unsubscribed', function(topic){console.log(topic)})
 ## Member
 
 * A member is a client, which can connect to the broker, publish, subscribe, unsubscribe topics or wildcard-topics (#) and some data.
+* [Go to other member](#other) which is in another application
 * Topic without wildcard 'app/configuration/server' 
 * Topic with wildcard 'app/configuration/#' or 'app/#/configuration',....
 * Data can be a string or a object and is emitted as a buffer
@@ -56,6 +62,9 @@ var host = 'localhost'
 
 //Create the member
 var member = new tcppubsub.Member(port, host)
+
+//Subscribe the topic without callback
+member.sub('other/member/timer')
 
 // Subscribe the topic STRING or ARRAY
 member.sub('app/configuration/server', function(topic){
@@ -79,6 +88,27 @@ member.on('message', function(topic, data){
     member.unsub('app/configuration/server')
     console.log(topic, data)
 })
+
+```
+
+<a name="other"></a>
+
+# other Member
+```js
+var tcppubsub = require('tcppubsub')
+
+var port = 2223
+var host = 'localhost'
+
+//Create the member
+var other = new tcppubsub.Member(port, host)
+
+//publish data on the topic 'other/member/timer'
+setInterval(function(){
+    other.pub('other/member/timer', 'Moin moin at ' + Date())
+},1000)
+
+
 
 ```
 
