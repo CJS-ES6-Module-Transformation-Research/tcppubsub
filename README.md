@@ -31,7 +31,7 @@ var blockPublisher = false // block payload sending to publisher, if he has subs
 var broker = new tcppubsub.Broker(port, host, blockPublisher)
 broker.listen() 
 
-broker.getConnectios(function(err, numb){
+broker.getConnections(function(err, numb){
     console.log('connected members:', numb)
 })
 
