@@ -1,6 +1,6 @@
 {
   "name": "tcppubsub",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A simple node-js-tcp publish-subscribe framework. With a broker and a client called member.",
   "main": "lib/main.js",
   "scripts": {
