@@ -1,5 +1,7 @@
 # tcppubsub
 
+![tcppubsub icon](/public/tcppubsub.png?raw=true)
+
 > A simple node-js-tcp publish-subscribe-request-response framework :octopus:. With a broker and a client called member.
 
 A simple and fast :leopard: exchange of data between nodejs-applications.Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data.
@@ -19,7 +21,7 @@ npm i tcppubsub
 
 ## Broker :octopus:
 
-A broker handles all data from the members, like sockets, topics and payload. You can use some events do handle the member-data directly at the broker-side.
+A broker handles all data from the members, like sockets, topics and payload. You can use some events to handle the member-data directly at the broker-side.
 
 ```js
 var tcppubsub = require('tcppubsub')
@@ -50,7 +52,7 @@ broker.on('unsubscribed', function(topic){console.log('unsubscribed:', topic)})
 
 * Publish-subscribe data.
 * Listen on requests.
-* Request some data from listeners.
+* Query some data from listeners.
 * Topic without wildcard 'app/configuration/server' .
 * Topic with wildcard 'app/configuration/#' or 'app/#/configuration',....
 * Data can be a string or a object and is emitted as a buffer.
