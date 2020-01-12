@@ -30,7 +30,7 @@ var tcppubsub = require('tcppubsub')
 
 var port = 2223
 var host = 'localhost'
-var block = false // block payload sending to publisher, if he has subscribed the topic too. Default: true
+var block = true // block payload sending to publisher, if he has subscribed the topic too. Default: true
 
 var broker = new tcppubsub.Broker(port, host, block)
 broker.listen() 
