@@ -4,7 +4,7 @@
 
 ![tcppubsub icon](/public/tcppubsub.png?raw=true)
 
-A simple and fast exchange of data between nodejs-apps. Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data. Otherwise, get into a submarine and look for the ocotpus.
+A simple and fast exchange of data between nodejs-apps. Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data. Otherwise, get into a submarine and look for the octopus.
 
 * [Go to broker](#broker)
 * [Go to member](#member)
