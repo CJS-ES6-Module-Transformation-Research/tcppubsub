@@ -1,10 +1,10 @@
 # tcppubsub
 
+> A simple submarine build with publish-subscribe-request-response-methods :octopus:. With a broker called broker and a client called member.
+
 ![tcppubsub icon](/public/tcppubsub.png?raw=true)
 
-> A simple node-js-tcp publish-subscribe-request-response framework :octopus:. With a broker and a client called member.
-
-A simple and fast :leopard: exchange of data between nodejs-applications.Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data.
+A simple and fast :leopard: exchange of data between nodejs-apps. Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data. Otherwise, get into a submarine and look for the ocotpus.
 
 * [Go to broker](#broker)
 * [Go to member](#member)
@@ -23,14 +23,16 @@ npm i tcppubsub
 
 A broker handles all data from the members, like sockets, topics and payload. You can use some events to handle the member-data directly at the broker-side.
 
+### Example
+
 ```js
 var tcppubsub = require('tcppubsub')
 
 var port = 2223
 var host = 'localhost'
-var blockPublisher = false // block payload sending to publisher, if he has subscribed the topic too
+var block = false // block payload sending to publisher, if he has subscribed the topic too. Default: true
 
-var broker = new tcppubsub.Broker(port, host, blockPublisher)
+var broker = new tcppubsub.Broker(port, host, block)
 broker.listen() 
 
 broker.getConnections(function(err, numb){
