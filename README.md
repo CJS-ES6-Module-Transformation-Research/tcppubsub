@@ -1,8 +1,8 @@
 # tcppubsub
 
-> A simple node-js-tcp publish-subscribe framework. With a broker and a client called member.
+> A simple node-js-tcp publish-subscribe-request-response framework :octopus:. With a broker and a client called member.
 
-The idea of this framework is, to let diffrent nodejs-apps communicate together. I know there are diffrent kinds of pub-sub-patterns. But i was interested to do this implementation by the net-library.
+A simple and fast :leopard: exchange of data between nodejs-applications.Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data.
 
 * [Go to broker](#broker)
 * [Go to member](#member)
@@ -12,14 +12,14 @@ The idea of this framework is, to let diffrent nodejs-apps communicate together.
 
 ## Installing
 ```sh
-npm install tcppubsub --save
+npm i tcppubsub
 ```
 
 <a name="broker"></a>
 
-## Broker
+## Broker :octopus:
 
-* A broker handles all data from the members, like sockets, topics and payload. You can use some events do handle the member-data directly at the broker-side.
+A broker handles all data from the members, like sockets, topics and payload. You can use some events do handle the member-data directly at the broker-side.
 
 ```js
 var tcppubsub = require('tcppubsub')
@@ -35,24 +35,82 @@ broker.getConnections(function(err, numb){
     console.log('connected members:', numb)
 })
 
-//you can use some socket-events if needed
-broker.on('end', function(msg){console.log(msg)})
-broker.on('close', function(member){console.log(member)})
-broker.on('error', function(err){console.log(err)})
-broker.on('published', function(topic, data){console.log(topic, data)})
-broker.on('subscribed', function(topic){console.log(topic)})
-broker.on('unsubscribed', function(topic){console.log(topic)})
+//use the socket-events like:
+broker.on('end', function(msg){console.log('end:', msg)})
+broker.on('close', function(member){console.log('close:', msg)})
+broker.on('error', function(err){console.log('error:', err)})
+broker.on('published', function(data){console.log('published:', data)})
+broker.on('subscribed', function(topic){console.log('subscribed:', topic)})
+broker.on('unsubscribed', function(topic){console.log('unsubscribed:', topic)})
 ```
 
 <a name="member"></a>
 
-## Member
+## Member :leopard:
 
-* A member is a client, which can connect to the broker, publish, subscribe, unsubscribe topics or wildcard-topics (#) and some data.
-* [Go to other member](#other) which is in another application
-* Topic without wildcard 'app/configuration/server' 
+* Publish-subscribe data.
+* Listen on requests.
+* Request some data from listeners.
+* Topic without wildcard 'app/configuration/server' .
 * Topic with wildcard 'app/configuration/#' or 'app/#/configuration',....
-* Data can be a string or a object and is emitted as a buffer
+* Data can be a string or a object and is emitted as a buffer.
+* When the broker restarting, it will automatically resubscribe all topics from subscription or listeners.
+
+### Connect
+
+Call the connect-method to connect the member.
+
+```js
+member.connect(function(){
+    // Use other methods like sub, unsub, pub, req, listen in here.
+})
+```
+
+### Subscribe
+
+Subscribe a topic. For multiple topics give a array of topics like ['topic1', 'topic2',...].
+```js
+member.sub(topic, function(topic){})
+```
+
+### Unsubscribe
+
+Unsubscribe a topic. For multiple topics give a array of topics like ['topic1', 'topic2',...].
+```js
+member.unsub(topic)
+```
+
+### Publish
+
+Publish some data on a topic.
+```js
+member.pub(topic, data)
+```
+
+### Request
+
+Make a request on a listener topic. Set some timeout in ms for handle timeout-errors. Default-timeout: 10min.
+```js
+member.req(topic, data, function(err, data, id){
+    if(err){
+        console.log(err) // timeout error
+    }else{
+        console.log(data)
+    }
+}, timeout)
+```
+
+### Listen
+
+Listen on a specific topic for requests. Handle the data and send the response with res.
+```js
+member.listen(topic, function(data, res){
+    console.log(data)
+    res(data)
+})
+```
+
+### Example
 
 ```js
 var tcppubsub = require('tcppubsub')
@@ -63,50 +121,50 @@ var host = 'localhost'
 //Create the member
 var member = new tcppubsub.Member(port, host)
 
-//Subscribe the topic without callback
-member.sub('other/member/timer')
 
-// Subscribe the topic STRING or ARRAY
-member.sub('app/configuration/server', function(topic){
+member.connect(function(){
 
-    // Publish some data STRING, OBJECT, ARRAY
-    member.pub('app/configuration/server', {a : 1, b : 'Hello World'})
+    //Subscribe the topic without callback
+    member.sub('app/configuration/service')
+
+    // Subscribe the topic STRING or ARRAY
+    member.sub('app/configuration/server', function(topic){
+
+        // Publish some data STRING, OBJECT, ARRAY
+        member.pub('app/configuration/server', {name: 'yamigr', b : 'Hello World'})
+    })
+
+
+    // Receive the data on the certain topic
+    member.on('app/configuration/server', function(data){
+
+        // Unsubscribe the topic
+        member.unsub('app/configuration/server')
+        console.log('rcv publish:', data)
+    })
+
+    /******* OR *******/
+
+    // Receive all publishes on subscribed data
+    member.on('message', function(topic, data){
+        member.unsub('app/configuration/server')
+        console.log(topic, data)
+    })
+
+
+    member.listen('app/static/config', function(data, res){
+        res({ msg: 'Hello ' + data.name})
+    })
+
+
+    let timeout = 2000 // default 5000
+
+    member.req('app/static/config', { name : 'Peter Pan'}, function(err, data, id){
+        if(!err){
+            console.log('rcv response:', data.msg)
+        }
+    }, timeout)
 })
-
-// Receive the data on the certain topic
-member.on('app/configuration/server', function(data){
-
-    // Unsubscribe the topic
-    member.unsub('app/configuration/server')
-    console.log(data)
-})
-
-/******* OR *******/
-
-// Receive all subscribed data
-member.on('message', function(topic, data){
-    member.unsub('app/configuration/server')
-    console.log(topic, data)
-})
-
-```
-
-<a name="other"></a>
-
-# other Member
-```js
-var tcppubsub = require('tcppubsub')
-
-var port = 2223
-var host = 'localhost'
-
-//Create the member
-var other = new tcppubsub.Member(port, host)
-
-//publish data on the topic 'other/member/timer'
-setInterval(function(){
-    other.pub('other/member/timer', 'Moin moin at ' + Date())
-},1000)
 
 
 
