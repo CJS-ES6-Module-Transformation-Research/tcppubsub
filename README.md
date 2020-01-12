@@ -2,7 +2,7 @@
 
 > A simple and lightweight submarine build with publish-subscribe-request-response-methods. With a broker called broker :octopus: and a client called member :dolphin:.
 
-![tcppubsub icon](/public/tcppubsub.png?raw=true)
+[tcppubsub icon](public/tcppubsub.png)
 
 A simple and fast exchange of data between nodejs-apps. Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data. Otherwise, get into a submarine and look for the octopus.
 
