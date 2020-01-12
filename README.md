@@ -1,10 +1,10 @@
 # tcppubsub
 
-> A simple submarine build with publish-subscribe-request-response-methods :octopus:. With a broker called broker and a client called member.
+> A simple and lightweight submarine build with publish-subscribe-request-response-methods. With a broker called broker :octopus: and a client called member :dolphin:.
 
 ![tcppubsub icon](/public/tcppubsub.png?raw=true)
 
-A simple and fast :leopard: exchange of data between nodejs-apps. Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data. Otherwise, get into a submarine and look for the ocotpus.
+A simple and fast exchange of data between nodejs-apps. Use the publish-subscribe-pattern to handle events or use the request-response-pattern to query or serve some data. Otherwise, get into a submarine and look for the ocotpus.
 
 * [Go to broker](#broker)
 * [Go to member](#member)
@@ -50,7 +50,7 @@ broker.on('unsubscribed', function(topic){console.log('unsubscribed:', topic)})
 
 <a name="member"></a>
 
-## Member :leopard:
+## Member :dolphin:
 
 * Publish-subscribe data.
 * Listen on requests.
