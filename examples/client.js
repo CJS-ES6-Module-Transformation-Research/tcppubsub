@@ -9,10 +9,12 @@ var member = new tcppubsub.Member(port, host)
  
  
 member.connect(function(){
- 
+
     //Subscribe the topic without callback
     member.sub('app/configuration/service')
  
+    member.sub('hey/ho')
+
     // Subscribe the topic STRING or ARRAY
     member.sub('app/configuration/server', function(topic){
  
@@ -20,6 +22,14 @@ member.connect(function(){
         member.pub('app/configuration/server', {name: 'yamigr', b : 'Hello World'})
     })
  
+
+    member.pub('app/configuration/2', 'after pub', function(){
+
+        setTimeout(function(){
+            member.sub('app/configuration/2')
+        }, 1000)
+
+    })
  
     // Receive the data on the certain topic
     member.on('app/configuration/server', function(data){

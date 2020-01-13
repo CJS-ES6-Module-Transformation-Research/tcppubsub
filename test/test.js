@@ -5,7 +5,7 @@ var port = 2222
 var host = 'localhost'
 
 
-var broker = new tcppubsub.Broker(port, host)
+var broker = new tcppubsub.Broker(port, host, false)
 var member
 var did = false
 describe('Server', function() {

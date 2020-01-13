@@ -30,7 +30,7 @@ var tcppubsub = require('tcppubsub')
 
 var port = 2223
 var host = 'localhost'
-var block = true // block payload sending to publisher, if he has subscribed the topic too. Default: true
+var block = true // block payload sending to publisher, if he has subscribed the topic too. Default: true (blocked)
 
 var broker = new tcppubsub.Broker(port, host, block)
 broker.listen() 
@@ -38,6 +38,9 @@ broker.listen()
 broker.getConnections(function(err, numb){
     console.log('connected members:', numb)
 })
+
+// Publish on topics from broker
+broker.pub('hey/ho', 'Yellow submarine!')
 
 //use the socket-events like:
 broker.on('end', function(msg){console.log('end:', msg)})
@@ -114,6 +117,21 @@ member.listen(topic, function(data, res){
 })
 ```
 
+### Message Event
+
+Catch a message-event with namespace `message` for receiving all messages or use a specific topic.
+```js
+member.on('my/super/topic', function(data){
+    // data on the certain topic
+})
+
+/******* OR *******/
+
+member.on('message', function(topic, data){
+    // all data
+})
+```
+
 ### Example
 
 ```js
@@ -176,7 +194,7 @@ member.connect(function(){
 
 ## Authors
 
-* **Yannick Grund** - *Initial work* - [yamigr](https://github.com/yamigr)
+* **Yannick Grund (yamicro.io@gmail.com)** - *Initial work* - [yamigr](https://github.com/yamigr)
 
 ## ToDo
 

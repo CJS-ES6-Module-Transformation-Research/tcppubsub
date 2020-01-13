@@ -21,7 +21,14 @@ broker.on('close', function(member){
      
 })
 broker.on('error', function(err){console.log('error:', err)})
-broker.on('published', function(data){console.log('published:', data)})
-broker.on('subscribed', function(topic){console.log('subscribed:', topic)})
+broker.on('published', function(data){
+
+})
+broker.on('subscribed', function(topic){
+
+    if(topic === 'hey/ho')
+        broker.pub('hey/ho', 'hello from server')
+
+})
 broker.on('unsubscribed', function(topic){console.log('unsubscribed:', topic)})
 
