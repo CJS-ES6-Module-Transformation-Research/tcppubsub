@@ -1,0 +1,110 @@
+----------| ./test/test.js |----------
+|
+<-------
+var tcppubsub = require('../lib/main')
+--------
+var tcppubsub = require('../lib/main.js')
+
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./examples/client.js |----------
+|
+<-------
+var tcppubsub = require('../lib/main')
+
+--------
+var tcppubsub = require('../lib/main.js')
+
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./examples/server.js |----------
+|
+<-------
+var tcppubsub = require('../lib/main')
+
+--------
+var tcppubsub = require('../lib/main.js')
+
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/Client.js |----------
+|
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/Server.js |----------
+|
+<-------
+
+--------
+
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/main.js |----------
+|
+<-------
+module.exports.Broker = require('./Server')
+module.exports.Member = require('./Client')
+--------
+module.exports.Broker = require('./Server.js')
+module.exports.Member = require('./Client.js')
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+

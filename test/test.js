@@ -1,5 +1,5 @@
-var assert = require('assert')
-var tcppubsub = require('../lib/main')
+import assert from 'assert'
+import tcppubsub from '../lib/main.js'
 
 var port = 2222
 var host = 'localhost'

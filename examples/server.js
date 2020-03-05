@@ -1,5 +1,5 @@
-var tcppubsub = require('../lib/main')
- 
+import tcppubsub from '../lib/main.js'
+
 var port = 2223
 var host = 'localhost'
 var blockPublisher = false // block payload sending to publisher, if he has subscribed the topic too

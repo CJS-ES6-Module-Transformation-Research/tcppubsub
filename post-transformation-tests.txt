@@ -1,0 +1,12 @@
+
+
+  Server
+    #Member connect
+tcppubsub-broker listening on {}
+      ✓ create member-client
+    #Member action
+      ✓ subscribe and publish data in namespace and get the data in message namespace
+      ✓ subscribe and publish data and get the data in same namespace
+      ✓ subscribe wildcard
+      ✓ request response pattern ok
+      ✓ request response pattern error timeout

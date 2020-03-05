@@ -1,0 +1,71 @@
+
+
+
+
+
+
+
+----------| ./lib/Client.js |----------
+|
+<-------
+has default, give name
+module.exports = Client
+
+--------
+export {Client}
+export default Client
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/Server.js |----------
+|
+<-------
+has default, give name
+module.exports = Server
+--------
+export {Server}
+export default Server
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/main.js |----------
+|
+<-------
+has names, no default
+module.exports.Broker
+module.exports.Member
+--------
+export const Broker = access0
+export const Member = access1
+
+export default {Broker, Member}
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+----------| ./test/test.js |----------
+|
+<-------
+var assert = require('assert')
+var tcppubsub = require('../lib/main')
+--------
+import assert from 'assert'
+import tcppubsub from '../lib/main.js'
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./examples/client.js |----------
+|
+<-------
+var tcppubsub = require('../lib/main')
+--------
+import tcppubsub from '../lib/main.js'
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./examples/server.js |----------
+|
+<-------
+var tcppubsub = require('../lib/main')
+--------
+import tcppubsub from '../lib/main.js'
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/Client.js |----------
+|
+<-------
+let net = require('net');
+const access0 = require('events')
+let EventEmitter = access0.EventEmitter
+--------
+import net from 'net';
+import access0 from 'events';
+let EventEmitter = access0.EventEmitter
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/Server.js |----------
+|
+<-------
+const net = require('net');
+const access0 = require('events')
+let EventEmitter = access0.EventEmitter
+const wildcard = require('node-wildcard');
+--------
+import net from 'net';
+import access0 from 'events';
+let EventEmitter = access0.EventEmitter
+import wildcard from 'node-wildcard';
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/main.js |----------
+|
+<-------
+const acccess0 = require('./Server')
+const acccess1 = require('./Client')
+module.exports.Broker = access0
+module.exports.Member = access1
+--------
+import access0 from './Server.js'
+import access1 from './Client.js'
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+

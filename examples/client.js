@@ -1,4 +1,4 @@
-var tcppubsub = require('../lib/main')
+import tcppubsub from '../lib/main.js'
  
  
 var port = 2223

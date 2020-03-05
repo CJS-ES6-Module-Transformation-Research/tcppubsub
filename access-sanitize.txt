@@ -1,0 +1,68 @@
+
+
+
+
+----------| ./lib/Client.js |----------
+|
+<-------
+let EventEmitter = require('events').EventEmitter
+
+--------
+const access0 = require('events');
+let EventEmitter = access0.EventEmitter
+
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/Server.js |----------
+|
+<-------
+let EventEmitter = require('events').EventEmitter
+
+--------
+const access0 = require('events');
+let EventEmitter = access0.EventEmitter
+
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
+----------| ./lib/main.js |----------
+|
+<-------
+module.exports.Broker = require('./Server.js')
+module.exports.Member = require('./Client.js')
+--------
+const access0 = require('./Server.js')
+const access1 = require('./Client.js')
+module.exports.Broker = access0
+module.exports.Member = access1
+------->
+|
+__________________________________________________
+
+
+
+
+
+
+
+
+
