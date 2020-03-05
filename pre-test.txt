@@ -1,0 +1,16 @@
+
+> tcppubsub@1.0.5 test /Users/sam/Dropbox/Spring_20/research_proj/github_repo_stuff/tcppubsub
+> mocha
+
+
+
+  Server
+    #Member connect
+tcppubsub-broker listening on {"address":"127.0.0.1","family":"IPv4","port":2222}
+      ✓ create member-client
+    #Member action
+      ✓ subscribe and publish data in namespace and get the data in message namespace
+      ✓ subscribe and publish data and get the data in same namespace
+      ✓ subscribe wildcard
+      ✓ request response pattern ok
+      ✓ request response pattern error timeout
